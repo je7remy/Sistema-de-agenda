@@ -1,10 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content=" Jeremy De La Cruz">
+    <meta name="author" content="Jeremy De La Cruz">
     <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
 
     <title>Agenda de contactos personal</title>
@@ -53,8 +53,26 @@
     <div class="row">
 
     <div class="col-sm-12">
-      <a href="#addNew" class ="btn btn-primary" data-toggle="modal"><span class ="fa fa-plus"></span> Nuevo</a>
+      <a href="#addNew" class="btn btn-primary" data-toggle="modal"><span class="fa fa-plus"></span > Nuevo</a>
+      
+      <?php
+session_start();
+if (isset($_SESSION["message"])) {
+?>
   
+  <div class="alert alert-success alert-dismissible" style="margin-top: 20px;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <?php echo $_SESSION["message"]; ?>
+  </div>
+<?php
+  unset($_SESSION["message"]);
+}
+?>
+
+
+
+
+
 
     <table class="table table-bordered table-striped" style="margin-top: 20px;">
       <thead>
@@ -70,25 +88,34 @@
         
         include_once("conexion.php");
         $database = new ConectarDB();
-        $db = database -> open ();   
+        $db = $database->open();   
         try {
-          $sql = 'SELECTE * FROM personas';
-          foreach ($db => $query($sql) as $row) {
+          $sql = 'SELECT * FROM personas';
+          foreach ($db->query($sql) as $row) {
             ?>
             <tr>
-              <td><?php echo $row ['idPersona']; ?></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td><?php echo $row['IdPersona']; ?></td>
+              <td><?php echo $row['Nombre']; ?></td>
+              <td><?php echo $row['Telefono']; ?></td>
+              <td><?php echo $row['Correo']; ?></td>
+              <td><?php echo $row['Direccion']; ?></td>
+              <td><a href="#edit_<?php echo $row['IdPersona']; ?>" class="btn btn-success btn-sm" data-toggle="modal"><span class="fa fa-edit"> </span> Editar</a>
+              <a href="#delete_<?php echo $row['IdPersona']; ?>" class="btn btn-danger btn-sm" data-toggle="modal"><span class="fas fa-trash-alt"></span> Eliminar</a></td>
+            <?php
+    include('EditarEliminarModal.php');
+
+
+?>
             </tr>
             <?php 
             
           }
-        } catch (\Throwable $th) {
+        } catch (PDOException $e) {
           
+          echo "Hay un problema con la conexión: " . $e->getMessage();
         }
-        
+        $database->close();
+
         ?>
       </tbody>
     </table>
@@ -108,10 +135,3 @@
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script> 
   </body>
 </html>
-
-
-
-
-
-
- 

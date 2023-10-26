@@ -1,21 +1,21 @@
-<div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit_<?php echo $row['IdPersona']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title text-center">Agregar Contacto</h4>
+                <h4 class="modal-title text-center">Editar Contacto</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form action="agregar.php" method="post">
+                    <form method="post" action="editar.php?id=<?php echo $row['IdPersona']; ?>"  >
                         <div class="row form-group">
                             <div class="col-sm-2">
                                 <label class="control-label">Nombre:</label>
                             </div>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" required name="nombrecontacto">
+                                <input type="text" class="form-control" required name="nombrecontacto" value="<?php echo $row['Nombre']; ?>">
                             </div>
                         </div>
                         <!-- Agrega más campos de formulario si es necesario -->
@@ -25,7 +25,8 @@
         <label class="control-label" for="celular">Celular:</label>
     </div>
     <div class="col-sm-10">
-        <input type="tel" class="form-control" required name="celular" id="celular" oninput="formatPhoneNumber(this)" placeholder="(123) 456-7890">
+        <input type="tel" class="form-control" required name="celular" id="celular" oninput="formatPhoneNumber(this)" placeholder="(123) 456-7890" 
+        value="<?php echo $row['Telefono']; ?>">
     </div>
 </div>
 
@@ -55,7 +56,7 @@ function formatPhoneNumber(input) {
         <label class="control-label">Email:</label>
     </div>
     <div class="col-sm-10">
-        <input type="email" class="form-control"  name="email" pattern=".+@gmail\.com" required>
+        <input type="email" class="form-control"  name="email" pattern=".+@gmail\.com" required  value="<?php echo $row['Correo']; ?>">
         <small>Ejemplo: tunombre@gmail.com</small>
     </div>
 </div>
@@ -67,7 +68,7 @@ function formatPhoneNumber(input) {
                                 <label class="control-label">Direccion:</label>
                             </div>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" required name="direccion">
+                                <input type="text" class="form-control" required name="direccion" value="<?php echo $row['Direccion']; ?>">
                             </div>
                         </div>
                         <!-- Agrega más campos de formulario si es necesario -->
@@ -77,7 +78,7 @@ function formatPhoneNumber(input) {
     <span class="fa fa-times" aria-hidden="true"></span> Cancelar
 </button>
 
-    <button type="submit" name="add" class="btn btn-primary" ><span class="fa fa-save"></span> Guardar</button>
+    <button type="submit" name="edit" class="btn btn-success" ><span class="fa fa-check"></span> Actualizar</button>
 </div>
 
                     </form>
@@ -86,3 +87,5 @@ function formatPhoneNumber(input) {
         </div>
     </div>
 </div>
+
+<!-- Eliminar -->
