@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form action="agregar.php" method="post">
+                    <form action="agregar.php" method="post" id="MyFormAdd">
                         <div class="row form-group">
                             <div class="col-sm-2">
                                 <label class="control-label">Nombre:</label>
@@ -73,7 +73,7 @@ function formatPhoneNumber(input) {
                         <!-- Agrega más campos de formulario si es necesario -->
 
 <div class="modal-footer">
-<button type="button" class="btn btn-danger" data-dismiss="modal">
+<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="BorrarDatosForm()">
     <span class="fa fa-times" aria-hidden="true"></span> Cancelar
 </button>
 
@@ -86,3 +86,8 @@ function formatPhoneNumber(input) {
         </div>
     </div>
 </div>
+<script>
+    function BorrarDatosForm() {
+        document.getElementById("MyFormAdd").reset();
+    }
+</script>

@@ -15,7 +15,7 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/custom.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
-   
+    <link href="DataTables/datatables.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -41,10 +41,7 @@
             </div>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-        </form>
+       
       </div>
     </nav>
 
@@ -53,7 +50,7 @@
     <div class="row">
 
     <div class="col-sm-12">
-      <a href="#addNew" class="btn btn-primary" data-toggle="modal"><span class="fa fa-plus"></span > Nuevo</a>
+      <a href="#addNew" class="btn btn-primary" data-toggle="modal" style="margin-bottom: 8px;"><span class="fa fa-plus"></span > Nuevo</a>
       
       <?php
 session_start();
@@ -74,7 +71,7 @@ if (isset($_SESSION["message"])) {
 
 
 
-    <table class="table table-bordered table-striped" style="margin-top: 20px;">
+    <table class="table table-bordered table-striped" id="myAgenda"; style="margin-top: 20px;">
       <thead>
           <th>ID</th>
           <th>Nombre de Contacto</th>
@@ -133,5 +130,43 @@ if (isset($_SESSION["message"])) {
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script> 
+    <script src="DataTables/datatables.min.js"></script>
+
+    <script>
+    
+    //let table = new DataTable('#myAgenda');
+     $(document).ready( function() {
+     $('#myAgenda').DataTable();
+     });
+
+    </script>
+    <script>   
+  
+  var table = $('#myAgenda').DataTable({
+  language:{
+  "decimal": "", 
+  "emptyTable": "No hay información",
+          "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+          "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Entradas",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+              "first": "Primero",
+              "last": "Ultimo",
+              "next": "Siguiente",
+              "previous": "Anterior"
+          }
+        },
+
+      });
+
+  
+  </script>
   </body>
 </html>

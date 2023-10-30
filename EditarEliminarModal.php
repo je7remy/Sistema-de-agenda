@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    <form method="post" action="editar.php?id=<?php echo $row['IdPersona']; ?>"  >
+                    <form method="post" action="editar.php?id=<?php echo $row['IdPersona']; ?>" >
                         <div class="row form-group">
                             <div class="col-sm-2">
                                 <label class="control-label">Nombre:</label>
@@ -80,7 +80,6 @@ function formatPhoneNumber(input) {
 
     <button type="submit" name="edit" class="btn btn-success" ><span class="fa fa-check"></span> Actualizar</button>
 </div>
-
                     </form>
                 </div>
             </div>
@@ -88,4 +87,38 @@ function formatPhoneNumber(input) {
     </div>
 </div>
 
+
+
 <!-- Eliminar -->
+
+<div class="modal fade" id="delete_<?php echo $row['IdPersona']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">Borrar Contacto</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                 
+            <p class="text-center"> ¿Estas seguro de borrar los datos de?     </p>
+            <h2 class="text-center"> <?php echo $row['Nombre']; ?></h2>
+
+
+                <!-- Contenido del cuerpo del modal -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" >
+                    <span class="fa fa-times" aria-hidden="true"></span> Cancelar
+                </button>
+                <a href="delete.php?id=<?php echo $row['IdPersona']; ?>" class="btn btn-danger"><span class="fa fa-trash"> 
+                </span>  Si</a>
+                <!-- Agregar aquí el formulario o contenido adicional si es necesario -->
+               
+            </div>
+        </div>
+    </div>
+</div>
+
